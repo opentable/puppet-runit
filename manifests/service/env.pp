@@ -37,7 +37,7 @@ define runit::service::env( $service, $envname = $title, $value, $ensure = prese
   }
 
   file { "${envdir}/${envname}":
-    ensure => $ensure,
+    ensure  => $ensure,
     content => "${value}\n",
     owner   => $user,
     group   => $group,

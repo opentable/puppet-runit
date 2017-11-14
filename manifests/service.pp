@@ -49,7 +49,7 @@ define runit::service (
   # creating the logging sub-service, if requested
   if $logger == true {
     runit::service{ "${name}/log":
-      user => $user, group => $group, enable => false, ensure => $ensure, logger => false,
+      user    => $user, group => $group, enable => false, ensure => $ensure, logger => false,
       content => template('runit/logger_run.erb'),
     }
   }
@@ -74,7 +74,7 @@ define runit::service (
       },
       source  => $source,
       ensure  => $ensure,
-      mode    => 755,
+      mode    => '0755',
       ;
     "${svbase}/finish":
       content => $finish_source ? {
@@ -86,7 +86,7 @@ define runit::service (
       },
       source  => $finish_source,
       ensure  => $ensure,
-      mode    => 755,
+      mode    => '0755',
       ;
     "${svbase}/supervise":
       ensure => directory,
